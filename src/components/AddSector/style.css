@@ -51,7 +51,6 @@ button {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    /* padding: 0px 28px; */
 }
 
 .tagIcon {
