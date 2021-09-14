@@ -1,0 +1,37 @@
+.sectors {
+  background-color: #C4C4C4;
+  width: 39%;
+  padding: 20px 16px;
+}
+
+#active {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.panel {
+    background-color: #A09F9F;
+    margin-bottom: 20px;
+}
+
+.positions {
+    width: 60%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 16px;
+    margin-bottom: 16px;
+}
+
+.position {
+    background-color: #C4C4C4;
+    text-align: center;
+    padding: 6px;
+}
+
+.options {
+    width: 60%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 16px;
+    margin: auto;
+}

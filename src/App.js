@@ -1,19 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
 import 'antd/dist/antd.css';
-import { DatePicker } from 'antd';
 import { ReactComponent as Icon } from './assets/building.svg'
+import Sectors from './components/Sectors';
+import AddSector from './components/AddSector';
 
 function App() {
   return (
     <div className="container">
       <div className="logo">
         <Icon className="logo__icon" />
-        SETORES
+        <span>SETORES</span>
       </div>
       <main>
-        <div className="sectors"></div>
-        <div className="addSectors"></div>
+        <Sectors />
+        <AddSector />
       </main>
     </div>
   );
