@@ -1,0 +1,59 @@
+.addSector {
+  background-color: #C4C4C4;
+  width: 59%;
+  padding: 20px 16px;
+  position: relative;
+}
+
+.inputContainer {
+    display: flex;
+    margin-bottom: 22px;
+}
+
+input {
+    flex: 1;
+    background-color: #817f7f;
+    border: none;
+    height: 42px;
+}
+
+button {
+    margin-left: 20px;
+    background-color: #4a4a4a;
+    color: #ffffff;
+    width: 98px;
+    border: none;
+    cursor: pointer;
+}
+
+.saveButton {
+    position: absolute;
+    height: 42px;
+    bottom: 16px;
+    right: 20px;
+}
+
+.tags {
+    display: flex;
+}
+
+.tagContainer {
+    background-color: #fcf4f4;
+    margin-right: 20px;
+    width: 140px;
+    padding: 4px;
+    display: flex;
+}
+
+.tagTitle {
+    flex: 1;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    /* padding: 0px 28px; */
+}
+
+.tagIcon {
+    font-size: 20px;
+}
