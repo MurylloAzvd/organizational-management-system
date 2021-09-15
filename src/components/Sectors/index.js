@@ -5,17 +5,18 @@ import { useSelector } from "react-redux";
 import { ReactComponent as Arrow } from '../../assets/arrow.svg'
 import api from '../../services/api'
 import './style.css'
+import actions from '../../store/actions'
 
 const { Panel } = Collapse;
 
 function Sectors() {
-    const sectorsList = useSelector(state => state)
+    const sectorsList = useSelector(state => state.sectors)
     const dispatch = useDispatch()
 
     useEffect(() => {
         api
             .get('/sectors')
-            .then((response) => dispatch({ type: 'ADD_SECTORS', payload: response.data }))
+            .then((response) => dispatch(actions.sectors.addSectors(response.data)))
     }, [dispatch])
 
     return (

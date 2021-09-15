@@ -3,6 +3,7 @@ import { CloseCircleFilled } from '@ant-design/icons'
 import { useState } from 'react';
 import api from '../../services/api';
 import { useDispatch } from 'react-redux';
+import actions from '../../store/actions';
 
 
 function AddSector() {
@@ -55,7 +56,7 @@ function AddSector() {
                     .then((response) => {
                         setNewSector({ name: '', positions: [] });
                         setTagInput('');
-                        dispatch({ type: 'ADD_SECTOR', payload: newSector })
+                        dispatch(actions.sectors.addSector(newSector))
                     });
             }}>
                 SALVAR
