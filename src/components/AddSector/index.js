@@ -3,7 +3,7 @@ import { CloseCircleFilled } from '@ant-design/icons'
 import { useState } from 'react';
 import api from '../../services/api';
 
-const INITIAL_STATE = { name: '', id: Math.floor(Math.random() * 100), positions: [] }
+const INITIAL_STATE = { name: '', positions: [] }
 
 function AddSector() {
     const [newSector, setNewSector] = useState(INITIAL_STATE)
@@ -50,7 +50,10 @@ function AddSector() {
             <button className="btn saveButton" onClick={() => {
                 api
                     .post('/sectors', newSector)
-                    .then((response) => console.log(response))
+                    .then((response) => {
+                        setNewSector(INITIAL_STATE);
+                        setTagInput('');
+                    });
             }}>
                 SALVAR
             </button>
