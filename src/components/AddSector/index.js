@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 const INITIAL_STATE = { name: '', id: Math.floor(Math.random() * 100), positions: [] }
 
-function AddSector() {
+function AddSector({ sectorsList }) {
     const [newSector, setNewSector] = useState(INITIAL_STATE)
     const [tagInput, setTagInput] = useState('')
 
@@ -46,7 +46,11 @@ function AddSector() {
                 }
             </div>
 
-            <button className="btn saveButton">SALVAR</button>
+            <button className="btn saveButton" onClick={() => {
+                sectorsList.push(newSector)
+            }}>
+                SALVAR
+            </button>
         </div>
     )
 }
