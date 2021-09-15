@@ -3,6 +3,8 @@ import 'antd/dist/antd.css';
 import { ReactComponent as Icon } from './assets/building.svg'
 import Sectors from './components/Sectors';
 import AddSector from './components/AddSector';
+import { Provider } from 'react-redux';
+import store from './store';
 
 function App() {
 
@@ -13,8 +15,10 @@ function App() {
         <span>SETORES</span>
       </div>
       <main>
-        <Sectors />
-        <AddSector />
+        <Provider store={store}>
+          <Sectors />
+          <AddSector />
+        </Provider>
       </main>
     </div>
   );

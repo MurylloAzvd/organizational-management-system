@@ -2,12 +2,14 @@ import './style.css'
 import { CloseCircleFilled } from '@ant-design/icons'
 import { useState } from 'react';
 import api from '../../services/api';
+import { useDispatch } from 'react-redux';
 
-const INITIAL_STATE = { name: '', positions: [] }
 
 function AddSector() {
-    const [newSector, setNewSector] = useState(INITIAL_STATE)
+    const [newSector, setNewSector] = useState({ name: '', positions: [] })
     const [tagInput, setTagInput] = useState('')
+
+    const dispatch = useDispatch()
 
     return (
         <div className="addSector">
@@ -51,8 +53,9 @@ function AddSector() {
                 api
                     .post('/sectors', newSector)
                     .then((response) => {
-                        setNewSector(INITIAL_STATE);
+                        setNewSector({ name: '', positions: [] });
                         setTagInput('');
+                        dispatch({ type: 'ADD_SECTOR', payload: newSector })
                     });
             }}>
                 SALVAR

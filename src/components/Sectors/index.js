@@ -1,5 +1,7 @@
 import { Collapse } from "antd";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { ReactComponent as Arrow } from '../../assets/arrow.svg'
 import api from '../../services/api'
 import './style.css'
@@ -7,13 +9,14 @@ import './style.css'
 const { Panel } = Collapse;
 
 function Sectors() {
-    const [sectorsList, setSectorsList] = useState([])
+    const sectorsList = useSelector(state => state)
+    const dispatch = useDispatch()
 
     useEffect(() => {
         api
             .get('/sectors')
-            .then((response) => setSectorsList(response.data))
-    }, [])
+            .then((response) => dispatch({ type: 'ADD_SECTORS', payload: response.data }))
+    }, [dispatch])
 
     return (
         <div className="sectors">
