@@ -1,6 +1,7 @@
 import { Collapse } from "antd";
 import { useEffect, useState } from "react";
 import { ReactComponent as Arrow } from '../../assets/arrow.svg'
+import api from '../../services/api'
 import './style.css'
 
 const { Panel } = Collapse;
@@ -9,12 +10,9 @@ function Sectors() {
     const [sectorsList, setSectorsList] = useState([])
 
     useEffect(() => {
-        async function fetchData() {
-            const resp = await fetch('http://localhost:3000/sectors')
-            const data = await resp.json()
-            setSectorsList(data)
-        }
-        fetchData()
+        api
+            .get('/sectors')
+            .then((response) => setSectorsList(response.data))
     }, [])
 
     return (

@@ -1,10 +1,11 @@
 import './style.css'
 import { CloseCircleFilled } from '@ant-design/icons'
 import { useState } from 'react';
+import api from '../../services/api';
 
 const INITIAL_STATE = { name: '', id: Math.floor(Math.random() * 100), positions: [] }
 
-function AddSector({ sectorsList }) {
+function AddSector() {
     const [newSector, setNewSector] = useState(INITIAL_STATE)
     const [tagInput, setTagInput] = useState('')
 
@@ -35,7 +36,7 @@ function AddSector({ sectorsList }) {
             <div className="tags">
                 {
                     newSector.positions.map((position, index) => (
-                        <div className="tagContainer">
+                        <div className="tagContainer" key={index}>
                             <span className="tagTitle">{position}</span>
                             <CloseCircleFilled className="tagIcon" onClick={() => {
                                 const newPositions = newSector.positions.filter((pos, ind) => index !== ind)
@@ -47,7 +48,9 @@ function AddSector({ sectorsList }) {
             </div>
 
             <button className="btn saveButton" onClick={() => {
-                sectorsList.push(newSector)
+                api
+                    .post('/sectors', newSector)
+                    .then((response) => console.log(response))
             }}>
                 SALVAR
             </button>
