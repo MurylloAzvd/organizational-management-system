@@ -1,31 +1,48 @@
 import './style.css'
 import { CloseCircleFilled } from '@ant-design/icons'
+import { useState } from 'react';
+
+const INITIAL_STATE = { name: '', id: Math.floor(Math.random() * 100), positions: [] }
 
 function AddSector() {
+    const [newSector, setNewSector] = useState(INITIAL_STATE)
+    const [tagInput, setTagInput] = useState('')
+
     return (
         <div className="addSector">
             <h1>ADICIONAR SETOR</h1>
 
             <h2>NOME:</h2>
             <div className="inputContainer">
-                <input type="text" />
+                <input type="text" value={newSector.name} onChange={(e) => setNewSector({ ...newSector, name: e.target.value })} />
             </div>
 
             <h2>CARGO(S):</h2>
             <div className="inputContainer">
-                <input type="text" />
-                <button>ADICIONAR</button>
+                <input type="text" value={tagInput} onChange={(e) => setTagInput(e.target.value)} />
+                <button onClick={() => {
+                    const newPositions = [...newSector.positions, tagInput]
+                    setNewSector({ ...newSector, positions: newPositions })
+                    setTagInput('')
+                }}>
+                    ADICIONAR
+                </button>
             </div>
 
             <div className="tags">
-                <div className="tagContainer">
-                    <span className="tagTitle">CARGO 1</span>
-                    <CloseCircleFilled className="tagIcon" />
-                </div>
-                <div className="tagContainer">
-                    <span className="tagTitle">CARGO 24747478585858</span>
-                    <CloseCircleFilled className="tagIcon" />
-                </div>
+                {
+                    newSector.positions.map((position, index) => (
+                        <div className="tagContainer">
+                            <span className="tagTitle">{position}</span>
+                            <a onClick={() => {
+                                const newPositions = newSector.positions.filter((pos, ind) => index !== ind)
+                                setNewSector({ ...newSector, positions: newPositions })
+                            }}>
+                                <CloseCircleFilled className="tagIcon" />
+                            </a>
+                        </div>
+                    ))
+                }
             </div>
 
             <button className="saveButton">SALVAR</button>

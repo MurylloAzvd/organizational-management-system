@@ -4,42 +4,32 @@ import './style.css'
 
 const { Panel } = Collapse;
 
-const text = 'rapazzzzz'
-
-function Sectors() {
+function Sectors({ sectorsList }) {
     return (
         <div className="sectors">
             <h1>SETORES</h1>
             <Collapse
-                defaultActiveKey={['1']}
-                onChange={(ev) => console.log()}
                 expandIcon={({ isActive }) => <Arrow id={isActive ? 'active' : ''} />}
                 expandIconPosition='right'
                 ghost
             >
-                <Panel header="SETOR 1" key="1" className="panel">
-                    <p>{text}</p>
-                </Panel>
-                <Panel header="SETOR 2" key="2" className="panel">
-                    <p>{text}</p>
-                </Panel>
-                <Panel header="SETOR 3" key="3" className="panel">
-                    <div className="positions">
-                        <div className="position">CARGO X</div>
-                        <div className="position">CARGO X</div>
-                        <div className="position">CARGO X</div>
-                        <div className="position">CARGO X</div>
-                        <div className="position">CARGO X</div>
-                        <div className="position">CARGO X</div>
-                        <div className="position">CARGO X</div>
-                        <div className="position">CARGO X</div>
-                        <div className="position">CARGO X</div>
-                    </div>
-                    <div className="options">
-                        <div className="position">EDITAR</div>
-                        <div className="position">EXCLUIR</div>
-                    </div>
-                </Panel>
+                {
+                    sectorsList.map((sector) => (
+                        <Panel header={sector.name} key={sector.id} className="panel">
+                            <div className="positions">
+                                {
+                                    sector.positions.map((position, index) => (
+                                        <div className="position" key={index}>{position}</div>
+                                    ))
+                                }
+                            </div>
+                            <div className="options">
+                                <div className="position">EDITAR</div>
+                                <div className="position">EXCLUIR</div>
+                            </div>
+                        </Panel>
+                    ))
+                }
             </Collapse>
         </div>
     )
