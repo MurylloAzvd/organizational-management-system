@@ -20,11 +20,14 @@ function AddSector() {
             <h2>CARGO(S):</h2>
             <div className="inputContainer">
                 <input type="text" value={tagInput} onChange={(e) => setTagInput(e.target.value)} />
-                <button onClick={() => {
-                    const newPositions = [...newSector.positions, tagInput]
-                    setNewSector({ ...newSector, positions: newPositions })
-                    setTagInput('')
-                }}>
+                <button
+                    className="btn"
+                    onClick={() => {
+                        const newPositions = [...newSector.positions, tagInput]
+                        setNewSector({ ...newSector, positions: newPositions })
+                        setTagInput('')
+                    }}
+                >
                     ADICIONAR
                 </button>
             </div>
@@ -34,18 +37,16 @@ function AddSector() {
                     newSector.positions.map((position, index) => (
                         <div className="tagContainer">
                             <span className="tagTitle">{position}</span>
-                            <a onClick={() => {
+                            <CloseCircleFilled className="tagIcon" onClick={() => {
                                 const newPositions = newSector.positions.filter((pos, ind) => index !== ind)
                                 setNewSector({ ...newSector, positions: newPositions })
-                            }}>
-                                <CloseCircleFilled className="tagIcon" />
-                            </a>
+                            }} />
                         </div>
                     ))
                 }
             </div>
 
-            <button className="saveButton">SALVAR</button>
+            <button className="btn saveButton">SALVAR</button>
         </div>
     )
 }

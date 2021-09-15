@@ -17,7 +17,7 @@ input {
     height: 42px;
 }
 
-button {
+.btn {
     margin-left: 20px;
     background-color: #4a4a4a;
     color: #ffffff;
@@ -56,4 +56,5 @@ button {
 .tagIcon {
     font-size: 20px;
     color: #000;
+    cursor: pointer;
 }
