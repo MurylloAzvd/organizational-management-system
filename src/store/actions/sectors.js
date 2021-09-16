@@ -25,8 +25,16 @@ const removeEdit = () => {
     }
 }
 
+const editSector = (sector) => {
+    return {
+        type: 'EDIT_SECTOR',
+        payload: sector
+    }
+}
+
 const sectors = {
     addSector,
+    editSector,
     addSectors,
     addEdit,
     removeEdit,

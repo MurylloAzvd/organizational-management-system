@@ -1,6 +1,6 @@
 import './style.css'
 import { CloseCircleFilled } from '@ant-design/icons'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import api from '../../services/api';
 import { useDispatch } from 'react-redux';
 import actions from '../../store/actions';
@@ -15,6 +15,10 @@ function AddSector() {
     const hasEdit = Object.keys(edit).length > 0
 
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        hasEdit && setNewSector(edit)
+    }, [edit, hasEdit])
 
     return (
         <div className="addSector">
@@ -55,13 +59,22 @@ function AddSector() {
             </div>
 
             <button className="btn saveButton" onClick={() => {
-                api
-                    .post('/sectors', newSector)
-                    .then((response) => {
-                        setNewSector({ name: '', positions: [] });
-                        setTagInput('');
-                        dispatch(actions.sectors.addSector(response.data));
-                    });
+                hasEdit ?
+                    api
+                        .put(`/sectors/${edit.id}`, newSector)
+                        .then((response) => {
+                            setNewSector({ name: '', positions: [] });
+                            setTagInput('');
+                            dispatch(actions.sectors.editSector(response.data))
+                        })
+                    :
+                    api
+                        .post('/sectors', newSector)
+                        .then((response) => {
+                            setNewSector({ name: '', positions: [] });
+                            setTagInput('');
+                            dispatch(actions.sectors.addSector(response.data));
+                        });
             }}>
                 SALVAR
             </button>
