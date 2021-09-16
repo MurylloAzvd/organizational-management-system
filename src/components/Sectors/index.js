@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { ReactComponent as Arrow } from '../../assets/arrow.svg'
-import api from '../../services/api'
 import './style.css'
 import actions from '../../store/actions'
 
@@ -14,9 +13,7 @@ function Sectors() {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        api
-            .get('/sectors')
-            .then((response) => dispatch(actions.sectors.addSectors(response.data)))
+        dispatch(actions.sectors.addSectors())
     }, [dispatch])
 
     return (
@@ -39,11 +36,7 @@ function Sectors() {
                             </div>
                             <div className="options">
                                 <div className="option" onClick={() => dispatch(actions.sectors.addEdit(sector))}>EDITAR</div>
-                                <div className="option" onClick={() => {
-                                    api
-                                        .delete(`/sectors/${sector.id}`)
-                                        .then(() => dispatch(actions.sectors.removeSector(sector.id)))
-                                }}>EXCLUIR</div>
+                                <div className="option" onClick={() => dispatch(actions.sectors.removeSector(sector.id))}>EXCLUIR</div>
                             </div>
                         </Panel>
                     ))

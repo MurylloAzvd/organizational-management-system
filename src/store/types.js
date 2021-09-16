@@ -1,0 +1,5 @@
+export const ADD_SECTOR = 'ADD_SECTOR'
+export const EDIT_SECTOR = 'EDIT_SECTOR'
+export const REMOVE_SECTOR = 'REMOVE_SECTOR'
+export const ADD_SECTORS = 'ADD_SECTORS'
+export const ADD_EDIT = 'ADD_EDIT'

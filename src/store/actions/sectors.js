@@ -1,36 +1,43 @@
-const addSector = (newSector) => {
-    return {
-        type: 'ADD_SECTOR',
-        payload: newSector
-    }
+import api from '../../services/api'
+import { ADD_EDIT, ADD_SECTOR, ADD_SECTORS, EDIT_SECTOR, REMOVE_SECTOR } from '../types'
+
+const editSector = (sector, id) => async (dispatch) => {
+    const response = await api.put(`/sectors/${id}`, sector)
+    dispatch({
+        type: EDIT_SECTOR,
+        payload: response.data
+    })
 }
 
-const addSectors = (sectors) => {
-    return {
-        type: 'ADD_SECTORS',
-        payload: sectors
-    }
+const addSector = (newSector) => async (dispatch) => {
+    const response = await api.post(`/sectors`, newSector)
+    dispatch({
+        type: ADD_SECTOR,
+        payload: response.data
+    })
+}
+
+const addSectors = () => async (dispatch) => {
+    const response = await api.get('/sectors')
+    dispatch({
+        type: ADD_SECTORS,
+        payload: response.data
+    })
 }
 
 const addEdit = (sector) => {
     return {
-        type: 'ADD_EDIT',
+        type: ADD_EDIT,
         payload: sector
     }
 }
 
-const editSector = (sector) => {
-    return {
-        type: 'EDIT_SECTOR',
-        payload: sector
-    }
-}
-
-const removeSector = (id) => {
-    return {
-        type: 'REMOVE_SECTOR',
+const removeSector = (id) => async (dispatch) => {
+    await api.delete(`/sectors/${id}`)
+    dispatch({
+        type: REMOVE_SECTOR,
         payload: id
-    }
+    })
 }
 
 const sectors = {
