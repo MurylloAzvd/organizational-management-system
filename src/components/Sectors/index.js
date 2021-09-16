@@ -28,8 +28,8 @@ function Sectors() {
                 ghost
             >
                 {
-                    sectorsList.map((sector) => (
-                        <Panel header={sector.name} key={sector.id} className="panel">
+                    sectorsList.map((sector, index) => (
+                        <Panel header={sector.name} key={index} className="panel">
                             <div className="positions">
                                 {
                                     sector.positions.map((position, index) => (
