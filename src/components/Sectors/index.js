@@ -10,7 +10,7 @@ import actions from '../../store/actions'
 const { Panel } = Collapse;
 
 function Sectors() {
-    const sectorsList = useSelector(state => state.sectors)
+    const sectorsList = useSelector(state => state.sectors.list)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -38,8 +38,8 @@ function Sectors() {
                                 }
                             </div>
                             <div className="options">
-                                <div className="position">EDITAR</div>
-                                <div className="position">EXCLUIR</div>
+                                <div className="option" onClick={() => dispatch(actions.sectors.addEdit(sector))}>EDITAR</div>
+                                <div className="option">EXCLUIR</div>
                             </div>
                         </Panel>
                     ))

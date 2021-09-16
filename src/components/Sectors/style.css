@@ -38,3 +38,13 @@
     grid-gap: 16px;
     margin: auto;
 }
+
+.option {
+    background-color: #C4C4C4;
+    text-align: center;
+    padding: 6px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    cursor: pointer;
+}

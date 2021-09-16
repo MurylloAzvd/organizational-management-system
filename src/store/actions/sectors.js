@@ -12,9 +12,24 @@ const addSectors = (sectors) => {
     }
 }
 
+const addEdit = (sector) => {
+    return {
+        type: 'ADD_EDIT',
+        payload: sector
+    }
+}
+
+const removeEdit = () => {
+    return {
+        type: 'REMOVE_EDIT'
+    }
+}
+
 const sectors = {
     addSector,
-    addSectors
+    addSectors,
+    addEdit,
+    removeEdit,
 }
 
 export default sectors

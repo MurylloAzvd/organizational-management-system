@@ -4,17 +4,21 @@ import { useState } from 'react';
 import api from '../../services/api';
 import { useDispatch } from 'react-redux';
 import actions from '../../store/actions';
+import { useSelector } from 'react-redux';
 
 
 function AddSector() {
     const [newSector, setNewSector] = useState({ name: '', positions: [] })
     const [tagInput, setTagInput] = useState('')
 
+    const edit = useSelector(state => state.sectors.edit)
+    const hasEdit = Object.keys(edit).length > 0
+
     const dispatch = useDispatch()
 
     return (
         <div className="addSector">
-            <h1>ADICIONAR SETOR</h1>
+            <h1>{hasEdit ? `EDITAR ${edit.name}` : 'ADICIONAR SETOR'}</h1>
 
             <h2>NOME:</h2>
             <div className="inputContainer">
