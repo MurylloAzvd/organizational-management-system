@@ -13,7 +13,7 @@ function Sectors() {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(actions.sectors.addSectors())
+        dispatch(actions.sectors.getSectors())
     }, [dispatch])
 
     return (
@@ -35,7 +35,7 @@ function Sectors() {
                                 }
                             </div>
                             <div className="options">
-                                <div className="option" onClick={() => dispatch(actions.sectors.addEdit(sector))}>EDITAR</div>
+                                <div className="option" onClick={() => dispatch(actions.sectors.edit(sector))}>EDITAR</div>
                                 <div className="option" onClick={() => dispatch(actions.sectors.removeSector(sector.id))}>EXCLUIR</div>
                             </div>
                         </Panel>

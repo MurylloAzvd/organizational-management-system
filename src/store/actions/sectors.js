@@ -1,5 +1,5 @@
 import api from '../../services/api'
-import { ADD_EDIT, ADD_SECTOR, ADD_SECTORS, EDIT_SECTOR, REMOVE_SECTOR } from '../types'
+import { EDIT, ADD_SECTOR, GET_SECTORS, EDIT_SECTOR, REMOVE_SECTOR } from '../types'
 
 const editSector = (sector, id) => async (dispatch) => {
     const response = await api.put(`/sectors/${id}`, sector)
@@ -17,19 +17,12 @@ const addSector = (newSector) => async (dispatch) => {
     })
 }
 
-const addSectors = () => async (dispatch) => {
+const getSectors = () => async (dispatch) => {
     const response = await api.get('/sectors')
     dispatch({
-        type: ADD_SECTORS,
+        type: GET_SECTORS,
         payload: response.data
     })
-}
-
-const addEdit = (sector) => {
-    return {
-        type: ADD_EDIT,
-        payload: sector
-    }
 }
 
 const removeSector = (id) => async (dispatch) => {
@@ -40,11 +33,19 @@ const removeSector = (id) => async (dispatch) => {
     })
 }
 
+const edit = (sector) => {
+    return {
+        type: EDIT,
+        payload: sector
+    }
+}
+
+
 const sectors = {
     addSector,
     editSector,
-    addSectors,
-    addEdit,
+    getSectors,
+    edit,
     removeSector
 }
 
