@@ -19,16 +19,17 @@ const addEdit = (sector) => {
     }
 }
 
-const removeEdit = () => {
-    return {
-        type: 'REMOVE_EDIT'
-    }
-}
-
 const editSector = (sector) => {
     return {
         type: 'EDIT_SECTOR',
         payload: sector
+    }
+}
+
+const removeSector = (id) => {
+    return {
+        type: 'REMOVE_SECTOR',
+        payload: id
     }
 }
 
@@ -37,7 +38,7 @@ const sectors = {
     editSector,
     addSectors,
     addEdit,
-    removeEdit,
+    removeSector
 }
 
 export default sectors

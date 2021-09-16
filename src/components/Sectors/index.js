@@ -39,7 +39,11 @@ function Sectors() {
                             </div>
                             <div className="options">
                                 <div className="option" onClick={() => dispatch(actions.sectors.addEdit(sector))}>EDITAR</div>
-                                <div className="option">EXCLUIR</div>
+                                <div className="option" onClick={() => {
+                                    api
+                                        .delete(`/sectors/${sector.id}`)
+                                        .then(() => dispatch(actions.sectors.removeSector(sector.id)))
+                                }}>EXCLUIR</div>
                             </div>
                         </Panel>
                     ))

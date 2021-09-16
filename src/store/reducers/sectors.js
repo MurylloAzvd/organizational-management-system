@@ -6,19 +6,23 @@ const sectors = (state = INITIAL_STATE, action) => {
             return { ...state, list: [...state.list, action.payload] }
         case 'EDIT_SECTOR':
             const sector = action.payload
-            const newList = state.list.map((elem) => (
+            const newListEdit = state.list.map((elem) => (
                 elem.id === sector.id ?
                     sector
                     :
                     elem
             ))
-            return { list: newList, edit: {} }
+            return { list: newListEdit, edit: {} }
+        case 'REMOVE_SECTOR':
+            const id = action.payload
+            const newListRemove = state.list.filter((elem) => (
+                elem.id !== id
+            ))
+            return { ...state, list: newListRemove }
         case 'ADD_SECTORS':
             return { ...state, list: [...action.payload] }
         case 'ADD_EDIT':
             return { ...state, edit: action.payload }
-        case 'REMOVE_EDIT':
-            return { ...state, edit: {} }
         default:
             return state;
     }
