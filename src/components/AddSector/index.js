@@ -56,7 +56,7 @@ function AddSector() {
                     .then((response) => {
                         setNewSector({ name: '', positions: [] });
                         setTagInput('');
-                        dispatch(actions.sectors.addSector(newSector))
+                        dispatch(actions.sectors.addSector(response.data));
                     });
             }}>
                 SALVAR
