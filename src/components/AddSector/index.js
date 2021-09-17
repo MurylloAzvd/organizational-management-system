@@ -29,28 +29,32 @@ function AddSector() {
             </div>
 
             <h2>CARGO(S):</h2>
-            <div className="inputContainer">
-                <input type="text" value={tagInput} onChange={(e) => { setError(''); setTagInput(e.target.value) }} />
-                <button
-                    className="btn"
-                    onClick={() => {
-                        let repeat = 0
-                        list.forEach(elem => {
-                            if (elem.positions.includes(tagInput)) repeat++
-                        })
-                        if (repeat > 0 || newSector.positions.includes(tagInput)) {
-                            setError('Esse cargo já existe, tente outro.')
-                            return
-                        }
+            <form className="inputContainer" onSubmit={(ev) => {
+                ev.preventDefault()
 
-                        const newPositions = [...newSector.positions, tagInput]
-                        setNewSector({ ...newSector, positions: newPositions })
-                        setTagInput('')
-                    }}
-                >
+                if (tagInput.length === 0) {
+                    setError('O nome do cargo deve ser preenchido')
+                    return
+                }
+
+                let repeat = 0
+                list.forEach(elem => {
+                    if (elem.positions.includes(tagInput)) repeat++
+                })
+                if (repeat > 0 || newSector.positions.includes(tagInput)) {
+                    setError('Esse cargo já existe, tente outro.')
+                    return
+                }
+
+                const newPositions = [...newSector.positions, tagInput]
+                setNewSector({ ...newSector, positions: newPositions })
+                setTagInput('')
+            }}>
+                <input type="text" value={tagInput} onChange={(e) => { setError(''); setTagInput(e.target.value) }} />
+                <button className="btn">
                     ADICIONAR
                 </button>
-            </div>
+            </form>
 
             <div className="tags">
                 {
@@ -69,7 +73,12 @@ function AddSector() {
             <p className="error">{error}</p>
 
             <button className="btn saveButton" onClick={() => {
-                const repeat = list.filter((elem) => elem.name === newSector.name).length
+                if (newSector.name.length === 0) {
+                    setError('O nome do setor deve ser preenchido')
+                    return
+                }
+
+                const repeat = list.filter((elem) => elem.name === newSector.name && elem.name !== edit.name).length
                 if (repeat > 0) {
                     setError('Nome do setor já existe, tente outro.')
                     return
