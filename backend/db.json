@@ -1,0 +1,32 @@
+{
+  "sectors": [
+    {
+      "name": "FINANCEIRO",
+      "positions": [
+        "TESOUREIRO",
+        "GESTOR"
+      ],
+      "id": 1
+    },
+    {
+      "name": "DESENVOLVIMENTO",
+      "positions": [
+        "FRONTEND",
+        "BACKEND",
+        "INFRA"
+      ],
+      "id": 2
+    },
+    {
+      "name": "DESING",
+      "positions": [
+        "UX",
+        "UI",
+        "PROTOTIPAGEM",
+        "CRIAÇÃO",
+        "FIGMA"
+      ],
+      "id": 3
+    }
+  ]
+}
