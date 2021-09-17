@@ -35,11 +35,13 @@ input {
 
 .tags {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .tagContainer {
     background-color: #fcf4f4;
     margin-right: 20px;
+    margin-bottom: 20px;
     width: 140px;
     padding: 4px;
     display: flex;
@@ -57,4 +59,10 @@ input {
     font-size: 20px;
     color: #000;
     cursor: pointer;
+}
+
+.error {
+    color: red;
+    margin-top: 20px;
+    font-size: x-large;
 }
